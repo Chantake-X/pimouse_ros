@@ -1,11 +1,12 @@
 #!/bin/bash -xve
+
 pip install catkin_pkg
 pip install empy
 pip install pyyaml
 pip install rospkg
 
 cd ..
-git clone https://github.com/ryuichiueda/ros_setup_scripts_Ubuntu18.04_desktop.git
+git clone https://github.com/ryuichiueda/ros_setup_scripts_Ubuntu18.04_server.git
 cd ./ros_setup_scripts_Ubuntu18.04_desktop
 bash ./step0.bash
 bash ./step1.bash
