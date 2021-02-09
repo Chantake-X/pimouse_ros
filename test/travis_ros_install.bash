@@ -15,5 +15,5 @@ mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src
 source /opt/ros/melodic/setup.bash
 catkin_init_workspace
-cd ~/catkin_init_workspace
+cd ~/catkin_workspace
 catkin_make
