@@ -2,4 +2,3 @@
 
 # pimouse_ros
 ROSの学習用
-自動テストまで終了
