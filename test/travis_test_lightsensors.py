@@ -5,12 +5,13 @@ import time
 from pimouse_ros.msg import LightSensorValues
 
 class LightSensorTest(unittest.TestCase):
+    #テスト実行前にコールされる
     def setUp(self):
         self.count = 0
         rospy.Subscriber('/lightsensors', LihjtSensorValues, self.callback)
         self.values = LightSensorValues()
 
-    def callback(self.data):
+    def callback(self, data):
         self.count += 1
         self.values = data
 
@@ -49,4 +50,3 @@ if __name__ == '__main__':
     time.sleep(3)
     rospy.init_node('travis_test_lightsensors')
     rostest.rosrun('pimouse_ros', 'travis_test_lightsensors', LightSensorTest)
-    
