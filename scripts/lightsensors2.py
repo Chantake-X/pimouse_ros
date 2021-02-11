@@ -10,8 +10,8 @@ def get_freq():
             raise Exception()
     except:
         rospy.logerr("value error: lightsensors_feq")
-        #sys.exit(1)
-        f = 10
+        sys.exit(1)
+        #f = 10
 
     return f
 
