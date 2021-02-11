@@ -1,13 +1,27 @@
 #!/usr/bin/env python
+#encoding: utf8
 import sys, rospy
 from pimouse_ros.msg import LightSensorValues
+
+def get_freq():
+    f = rospy.get_param('lightsensors_freq', 10)
+    try:
+        if f <= 0.0:
+            raise Exception()
+    except:
+        rospy.logerr("value error: lightsensors_feq")
+        sys.exit(1)
+
+    return f
+
 
 if __name__ == '__main__':
     devfile = '/dev/rtlightsensor0'
     rospy.init_node('lightsensors')
     pub = rospy.Publisher('lightsensors', LightSensorValues, queue_size=1)
 
-    rate = rospy.Rate(10)
+    freq = get_freq()
+    rate = rospy.Rate(freq)
     while not rospy.is_shutdown():
         try:
             with open(devfile, 'r') as f:
@@ -23,5 +37,12 @@ if __name__ == '__main__':
                 pub.publish(d)
         except IOError:
             rospy.logerr("cannot read to " + devfile)
+
+        # rosparam set /lightsensor_freq 1
+        # で外からパラメータを変更できる
+        f = get_freq()
+        if f != freq:
+            freq = f
+            rate = rospy.Rate(freq)
 
         rate.sleep()
