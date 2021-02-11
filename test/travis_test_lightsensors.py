@@ -1,6 +1,7 @@
 #!/usr/bin/env python
-#encofing: utf8
-import unittest, rospy
+#encoding: utf8
+import unittest, rostest
+import rosnode, rospy
 import time
 from pimouse_ros.msg import LightSensorValues
 
@@ -8,7 +9,7 @@ class LightSensorTest(unittest.TestCase):
     #テスト実行前にコールされる
     def setUp(self):
         self.count = 0
-        rospy.Subscriber('/lightsensors', LihjtSensorValues, self.callback)
+        rospy.Subscriber('/lightsensors', LightSensorValues, self.callback)
         self.values = LightSensorValues()
 
     def callback(self, data):
@@ -25,8 +26,8 @@ class LightSensorTest(unittest.TestCase):
         self.assertEqual(vs.sum_forward, lf + rf, "different value: sum_forward")
 
     def test_node_exsit(self):
-        nodes = rosnode.get_node_name()
-        self.assertIn('/lightsensors', node, "node does not exsist")
+        nodes = rosnode.get_node_names()
+        self.assertIn('/lightsensors', nodes, "node does not exsist")
 
     def test_get_value(self):
         rospy.set_param('/lightsensors_freq', 10)
