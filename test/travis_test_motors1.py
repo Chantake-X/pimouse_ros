@@ -6,7 +6,7 @@ import time
 from pimouse_ros.msg import MotorFreqs
 from geometry_msgs.msg import Twist
 
-class MotorTests(unittest.TestCase):
+class MotorTest(unittest.TestCase):
     def file_check(self, dev, value, message):
         with open("/dev/" + dev, "r") as f:
             self.assertEqual(f.readline(), str(value)+"\n", message)
@@ -43,7 +43,7 @@ class MotorTests(unittest.TestCase):
         self.file_check("rtmotor_raw_l0", 0, "don't stop after [1s]")
         self.file_check("rtmotor_raw_r0", 0, "don't stop after [1s]")
 
-    if __name__ == '__main__':
+if __name__ == '__main__':
         time.sleep(3)
         rospy.init_node('travis_test_motors')
         rostest.rosrun('pimouse_ros', 'travis_test_motors', MotorTest)
