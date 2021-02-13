@@ -13,11 +13,11 @@ class MotorTest(unittest.TestCase):
 
     def test_node_exist(self):
         nodes = rosnode.get_node_names()
-        self.assertIn('motors', node, "node does not exsit")
+        self.assertIn('motors', nodes, "node does not exsit")
 
     def test_put_freq(self):
-        pub = rospy.Publisher('/motor_raw', MotorsFreqs)
-        m = MotorsFreqs()
+        pub = rospy.Publisher('/motor_raw', MotorFreqs)
+        m = MotorFreqs()
         m.left_hz = 123
         m.right_hz = 456
         for i in range(10):
