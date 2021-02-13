@@ -6,7 +6,7 @@ import time
 from pimouse_ros.msg import MotorFreqs
 from geometry_msgs.msg import Twist
 
-class MotorTest(unittest.TestCase):
+class MotorTests(unittest.TestCase):
     def file_check(self, dev, value, message):
         with open("/dev/" + dev, "r") as f:
             self.assertEqual(f.readline(), str(value)+"\n", message)
@@ -27,7 +27,7 @@ class MotorTest(unittest.TestCase):
         self.file_check("rtmotor_raw_l0", m.left_hz, "wromng left value from motor_raw")
         self.file_check("rtmotor_raw_r0", m.right_hz, "wromng left value from motor_raw")
 
-    def test_put_cmd_el(self):
+    def test_put_cmd_vel(self):
         pub = rospy.Publisher('/cmd_vel',  Twist)
         m = Twist()
         m.linear.x = 0.1414
@@ -46,4 +46,4 @@ class MotorTest(unittest.TestCase):
     if __name__ == '__main__':
         time.sleep(3)
         rospy.init_node('travis_test_motors')
-        rostest.rosrun('pimouse_ros', 'travis_test_motors', MotorTest)
+        rostest.rosrun('pimouse_ros', 'travis_test_motors', MotorTests)

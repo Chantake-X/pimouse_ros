@@ -6,7 +6,7 @@ from geometry_msgs.msg import Twist
 
 class Motor():
     def __init__(self):
-        #if not self.set_power(True): sys.exit(1)
+        if not self.set_power(True): sys.exit(1)
 
         rospy.on_shutdown(self.set_power)
         self.sub_raw = rospy.Subscriber('motor_raw', MotorFreqs, self.callback_raw_freq)
