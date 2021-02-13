@@ -23,7 +23,7 @@ class MotorTest(unittest.TestCase):
         for i in range(10):
             pub.publish(m)
             time.sleep(0.1)
-        time.sleep(10.1) # kari
+
         self.file_check("rtmotor_raw_l0", m.left_hz, "wromng left value from motor_raw")
         self.file_check("rtmotor_raw_r0", m.right_hz, "wromng left value from motor_raw")
 
@@ -39,7 +39,7 @@ class MotorTest(unittest.TestCase):
         self.file_check("rtmotor_raw_l0", 200, "wromng left value from motor_raw")
         self.file_check("rtmotor_raw_r0", 600, "wromng left value from motor_raw")
 
-        time.sleep(3.1) # 1.1
+        time.sleep(1.1)
         self.file_check("rtmotor_raw_l0", 0, "don't stop after [1s]")
         self.file_check("rtmotor_raw_r0", 0, "don't stop after [1s]")
 
