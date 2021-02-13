@@ -15,7 +15,7 @@ class Motor():
         self.using_cmd_vel = False
 
     def set_power(self,onoff=False):
-        en = "/dev/rmotoren0"
+        en = "/dev/rtmotoren0"
         try:
             with open(en, 'w') as f:
                 f.write("1\n" if onoff else "0\n")
