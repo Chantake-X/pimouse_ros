@@ -17,7 +17,7 @@ def recv_buzzer(data):
 
 def exec_music(goal):
     r = MusicResult()
-    fc = MusicFeedback()
+    fb = MusicFeedback()
 
     for i, f in enumerate(goal.freqs):
         fb.remaining_steps = len(goal.freqs) - i
@@ -28,7 +28,7 @@ def exec_music(goal):
             r.finished = False
             music.set_preempted(r)
             return
-            
+
         write_freq(f)
         rospy.sleep(1.0 if i  >= len(goal.durations) else goal.durations[i])
 
