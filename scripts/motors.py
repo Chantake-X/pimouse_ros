@@ -75,6 +75,8 @@ class Motor():
             rospy.logerr("can not wrire to " + dev)
             return False
 
+        return True
+        
 if __name__ == '__main__':
     rospy.init_node('motors')
     m = Motor()
