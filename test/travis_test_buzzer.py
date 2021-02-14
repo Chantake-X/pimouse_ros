@@ -30,7 +30,7 @@ class BuzzerTest(unittest.TestCase):
         goal.freqs = [100, 200, 300, 400]
         goal.durations = [2,2,2,2]
 
-        self.client.wait_for_service()
+        self.client.wait_for_server()
         self.client.send_goal(goal, feedback_cb=self.feedback_cb)
         self.client.wait_for_result()
 
