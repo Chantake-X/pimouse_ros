@@ -18,7 +18,8 @@ class MotorTest(unittest.TestCase):
 
     def file_check(self, dev, value, message):
         with open("/dev/" + dev, "r") as f:
-            self.assertEqual(f.readline(), str(value)+"\n", f.readline())#message)
+            data = f.readline()
+            self.assertEqual(data, str(value)+"\n", data)#message)
 
     def test_node_exist(self):
         nodes = rosnode.get_node_names()
