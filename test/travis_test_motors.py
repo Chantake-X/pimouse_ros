@@ -18,8 +18,7 @@ class MotorTest(unittest.TestCase):
 
     def file_check(self, dev, value, message):
         with open("/dev/" + dev, "r") as f:
-            data = f.readline()
-            self.assertEqual(data, str(value)+"\n", data)#message)
+            self.assertEqual(f.readline(), str(value)+"\n", message)
 
     def test_node_exist(self):
         nodes = rosnode.get_node_names()
@@ -32,8 +31,7 @@ class MotorTest(unittest.TestCase):
         m.right_hz = 456
         for i in range(10):
             pub.publish(m)
-            #time.sleep(0.1)
-            time.sleep(1)
+            time.sleep(0.1)
 
         self.file_check("rtmotor_raw_l0", m.left_hz, "wromng left value from motor_raw")
         self.file_check("rtmotor_raw_r0", m.right_hz, "wromng right value from motor_raw")
